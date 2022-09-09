@@ -1,7 +1,7 @@
-# Name of the Repo
+# Combinatronics
 
-Summary of stuff here
+Here I test an algorithm to output different combinations of numbers withing a set boundary
 
-# This is how you set up the project
+# How the project is set ip
 
-Do things here, Afterwards do more stuff
+There is one python file.

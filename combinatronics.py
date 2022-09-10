@@ -41,5 +41,7 @@ def combination_check(low, high):
         print(correct_set)
     # PRINT MESSAGE
     print("There are {} possible combinations between {} and {}".format(len(correct_sets), low, high))
+    # RETURN CORRECT SETS
+    return correct_sets
 
 combination_check(70, 75)

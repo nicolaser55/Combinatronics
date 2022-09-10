@@ -1,45 +1,45 @@
-prices = [5, 18,25,25,
-                # 50, 23,12, 12, 12,
-                # 10,3,25,30,30,25,12,25,18,
-                # 18,18,18,18,25,15,22,10,30,
-                # 40,25,25,28,28,28,28,50,25,
-                # 25,25,35,30,8,6,6,6,6,18,16,
-                # 16,12,10,15,15,15,16,12,15,
-                ]
+prices = [10,3,25,30,30,25,12,25,18,
+            # 18,18,18,18,25,15,22,10,30,
+            # 40,25,25,28,28,28,28,50,25,
+            # 25,25,35,30,8,6,6,6,6,18,
+            # 16,12,10,15,15,15,16,12,
+            ]
 
-# CHECK LIST OF NUMBERS
-def set_check(list):
-    # IF NUMBERS ARE ABOVE 60 BUT BELOW OR EQUAL TO 75
-    if sum(list) > 60 and sum(list) <= 75:
-        # RETURN TRUE BECAUSE IT FITS
-        return True
-    else:
-        # RETURN FALSE BECAUSE IT DOES NOT FIT
-        return False
-
-def n_length_combo(lst, n):
+# FUNTION TO GET COMBINATIONS OF n LENGTH
+def n_length_combo(input_list, n):
     # IF N IS EQUAL TO 0
     if n == 0:
-        # RETURN LIST OF LIST
+        # RETURN LIST OF LISTS
         return [[]]
-    # LIST OF COMBINATIONS
-    l =[]
+    # CREATE LIST OF COMBINATIONS (SETS)
+    sets_list = []
     # ITERATE OVER LIST RANGE
-    for i in range(0, len(lst)):
+    for i in range(0, len(input_list)):
         # M IS THE ITEM AT INDEX
-        m = lst[i]
+        m = input_list[i]
         # REMAINING LIST
-        remLst = lst[i + 1:]
+        remLst = input_list[i + 1:]
         # SET VARIABLE RECURSIVELY
         remainlst_combo = n_length_combo(remLst, n-1)
         # ITERATE OVER REMAINING NUMBERS
         for p in remainlst_combo:
             # APPEND M, *P TO LIST VARIABLE
-            l.append([m, *p])
-            print([m, *p])
+            sets_list.append([m, *p])
+    # RETURN LIST
+    return sets_list
 
-    return l
+# FUNCTION TO GET COMBINATIONS WITHIN BOUNDARIES
+def combination_check(low, high):
+    # CALL THE N LENGTH COMBO FUNCTION TO GET ALL COMBINATIONS
+    combinations = n_length_combo(prices, 3)
+    # FILTER ONLY COMBINATIONS WITHIN BOUNDS, CONVER TO TUPLE TO USE set()
+    correct_sets = [tuple(list) for list in combinations if sum(list) >= low and sum(list) <= high]
+    # DELETE DUPLICATES
+    correct_sets = set(correct_sets)
+    # PRINT CORRECT COMBINATIONS
+    for correct_set in correct_sets:
+        print(correct_set)
+    # PRINT MESSAGE
+    print("There are {} possible combinations between {} and {}".format(len(correct_sets), low, high))
 
-print(n_length_combo(prices, 4))
-
-# print(correct_sets)
+combination_check(70, 75)
